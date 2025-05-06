@@ -12,7 +12,7 @@
 local Rayfield = loadstring(game:HttpGet("https://sirius.menu/rayfield"))();
 local Window = Rayfield:CreateWindow({Name="문래중학교 스크립트 허브 (Version 1.75)",Icon=0,LoadingTitle="Loading..",LoadingSubtitle="제작: 문래중학교 1학년 1반",Theme="Serenity",DisableRayfieldPrompts=false,DisableBuildWarnings=false,ConfigurationSaving={Enabled=false,FolderName=nil,FileName="Big Hub"},Discord={Enabled=false,Invite="noinvitelink",RememberJoins=true},KeySystem=false,KeySettings={Title="KEY SYSTEM 🔐",Subtitle="하단 입력창에 키를 기입하세요.",Note="By MMS 1G 1C IH",FileName="Key",SaveKey=false,GrabKeyFromSite=true,Key={"https://pastebin.com/raw/d122EfKs"}}});
 local Tab = Window:CreateTab("🛠️ Main Tab", nil);
-local Section = Tab:CreateSection("by MMS 1G 1C IH");
+local Section = Tab:CreateSection("제작: 문래중학교 1학년 1반");
 Rayfield:Notify({Title="성공적으로 로딩되었어요!",Content="제작: 문래중학교 1학년 1반",Duration=6.5,Image=130293052125783});
 local Button = Tab:CreateButton({Name="InfiniteYield",Callback=function()
 	loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source", true))();
@@ -52,7 +52,7 @@ local Slider = Tab:CreateSlider({Name="점프력 조정",Range={0,500},Increment
 	end
 end});
 local Tab = Window:CreateTab("👑 주요 기능", nil);
-local Section = Tab:CreateSection("by MMS 1G 1C IH");
+local Section = Tab:CreateSection("제작: 문래중학교 1학년 1반");
 local Button = Tab:CreateButton({Name="AimLock (Q Key)",Callback=function()
 	loadstring(game:HttpGet("https://raw.githubusercontent.com/EzWinsV4/FlameForRobloxRivals/refs/heads/main/Features/Aimlock.lua", true))();
 end});
@@ -176,12 +176,12 @@ local Button = Tab:CreateButton({Name="Fly (F Key)",Callback=function()
 	loadstring(game:HttpGet("https://raw.githubusercontent.com/EzWinsV4/FlameForRobloxRivals/refs/heads/main/Features/Flight.lua", true))();
 end});
 local Tab = Window:CreateTab("⚔️️ 한국머더", nil);
-local Section = Tab:CreateSection("by MMS 1G 1C IH");
+local Section = Tab:CreateSection("제작: 문래중학교 1학년 1반");
 local Button = Tab:CreateButton({Name="종합 스크립트",Callback=function()
 	loadstring(game:HttpGet("https://raw.githubusercontent.com/ZISULAs/Korean-Murder/refs/heads/main/By-zisula", true))();
 end});
 local Tab = Window:CreateTab("🔫 Murderers VS Sheriffs Duels", nil);
-local Section = Tab:CreateSection("by MMS 1G 1C IH");
+local Section = Tab:CreateSection("제작: 문래중학교 1학년 1반");
 local Slider = Tab:CreateSlider({Name="히트박스 조정",Range={0,150},Increment=1,Suffix="Value",CurrentValue=50,Flag="Slider1",Callback=function(Value)
 	local FlatIdent_6A091 = 0;
 	while true do
@@ -223,7 +223,7 @@ local Slider = Tab:CreateSlider({Name="히트박스 조정",Range={0,150},Increm
 	end
 end});
 local Tab = Window:CreateTab("💬 트롤 버튼 타워", nil);
-local Section = Tab:CreateSection("by MMS 1G 1C IH");
+local Section = Tab:CreateSection("제작: 문래중학교 1학년 1반");
 local Button = Tab:CreateButton({Name="모든 트롤 버튼 누르기",Callback=function()
 	local FlatIdent_1076E = 0;
 	local trollbuttons;
