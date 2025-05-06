@@ -1,0 +1,441 @@
+--[[
+ .____                  ________ ___.    _____                           __                
+ |    |    __ _______   \_____  \\_ |___/ ____\_ __  ______ ____ _____ _/  |_  ___________ 
+ |    |   |  |  \__  \   /   |   \| __ \   __\  |  \/  ___// ___\\__  \\   __\/  _ \_  __ \
+ |    |___|  |  // __ \_/    |    \ \_\ \  | |  |  /\___ \\  \___ / __ \|  | (  <_> )  | \/
+ |_______ \____/(____  /\_______  /___  /__| |____//____  >\___  >____  /__|  \____/|__|   
+         \/          \/         \/    \/                \/     \/     \/                   
+          \_Welcome to LuaObfuscator.com   (Alpha 0.10.9) ~  Much Love, Ferib 
+
+]]--
+
+local Rayfield = loadstring(game:HttpGet("https://sirius.menu/rayfield"))();
+local Window = Rayfield:CreateWindow({Name="문래중학교 스크립트 허브 (Version 1.75)",Icon=0,LoadingTitle="Loading..",LoadingSubtitle="by MMS 1G 1C IH",Theme="Serenity",DisableRayfieldPrompts=false,DisableBuildWarnings=false,ConfigurationSaving={Enabled=false,FolderName=nil,FileName="Big Hub"},Discord={Enabled=false,Invite="noinvitelink",RememberJoins=true},KeySystem=false,KeySettings={Title="KEY SYSTEM 🔐",Subtitle="하단 입력창에 키를 기입하세요.",Note="By MMS 1G 1C IH",FileName="Key",SaveKey=false,GrabKeyFromSite=true,Key={"https://pastebin.com/raw/d122EfKs"}}});
+local Tab = Window:CreateTab("🛠️ Main Tab", nil);
+local Section = Tab:CreateSection("by MMS 1G 1C IH");
+Rayfield:Notify({Title="성공적으로 로딩됨!",Content="by 문래중학교 1학년 1반",Duration=6.5,Image=130293052125783});
+local Button = Tab:CreateButton({Name="InfiniteYield",Callback=function()
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source", true))();
+end});
+local Button = Tab:CreateButton({Name="DEX",Callback=function()
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/infyiff/backup/main/dex.lua"))();
+end});
+local Button = Tab:CreateButton({Name="AimBot",Callback=function()
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/ttwizz/Open-Aimbot/master/source.lua", true))();
+end});
+local Slider = Tab:CreateSlider({Name="속도 조정",Range={0,500},Increment=1,Suffix="Value",CurrentValue=16,Flag="Slider1",Callback=function(Value)
+	local player = game.Players.LocalPlayer;
+	local char = player.Character or player.CharacterAdded:Wait();
+	local hum = char:FindFirstChild("Humanoid");
+	if hum then
+		hum.WalkSpeed = Value;
+	end
+end});
+local Slider = Tab:CreateSlider({Name="점프력 조정",Range={0,500},Increment=1,Suffix="Value",CurrentValue=50,Flag="Slider1",Callback=function(Value)
+	local FlatIdent_2584C = 0;
+	local plr;
+	local char;
+	local hum;
+	while true do
+		if (FlatIdent_2584C == 0) then
+			plr = game.Players.LocalPlayer;
+			char = player.Character or player.CharacterAdded:Wait();
+			FlatIdent_2584C = 1;
+		end
+		if (FlatIdent_2584C == 1) then
+			hum = char:FindFirstChild("Humanoid");
+			if hum then
+				hum.JumpPower = Value;
+			end
+			break;
+		end
+	end
+end});
+local Tab = Window:CreateTab("👑 주요 기능", nil);
+local Section = Tab:CreateSection("by MMS 1G 1C IH");
+local Button = Tab:CreateButton({Name="AimLock (Q Key)",Callback=function()
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/EzWinsV4/FlameForRobloxRivals/refs/heads/main/Features/Aimlock.lua", true))();
+end});
+local Button = Tab:CreateButton({Name="ESP (E Key)",Callback=function()
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/EzWinsV4/FlameForRobloxRivals/refs/heads/main/Features/ESP.lua", true))();
+end});
+local Button = Tab:CreateButton({Name="Speed (B Key)",Callback=function()
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/EzWinsV4/FlameForRobloxRivals/refs/heads/main/Features/Speed.lua", true))();
+end});
+local Button = Tab:CreateButton({Name="Noclip (V Key)",Callback=function()
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/EzWinsV4/FlameForRobloxRivals/refs/heads/main/Features/Noclip.lua", true))();
+end});
+local Button = Tab:CreateButton({Name="Teleport (X Key)",Callback=function()
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/EzWinsV4/FlameForRobloxRivals/refs/heads/main/Features/Teleport.lua", true))();
+end});
+local tpfollowrange = 0;
+local tpfollowEnabled = false;
+local Slider = Tab:CreateSlider({Name="TpFollow (Z Key)",Range={-50,150},Increment=1,Suffix="Value",CurrentValue=5,Flag="Slider1",Callback=function(Value)
+	tpfollowrange = Value;
+	if (tpfollowEnabled == false) then
+		tpfollowEnabled = true;
+		local Players = game:GetService("Players");
+		local RunService = game:GetService("RunService");
+		local UserInputService = game:GetService("UserInputService");
+		local player = Players.LocalPlayer or Players:GetPlayers()[1];
+		local teleporting = false;
+		local function isOnSameTeam(otherPlayer)
+			local FlatIdent_8D83D = 0;
+			while true do
+				if (FlatIdent_8D83D == 0) then
+					if (player.Team and otherPlayer.Team) then
+						return player.Team == otherPlayer.Team;
+					end
+					return false;
+				end
+			end
+		end
+		local function getClosestPlayer()
+			local closestPlayer = nil;
+			local shortestDistance = math.huge;
+			for _, otherPlayer in pairs(Players:GetPlayers()) do
+				if ((otherPlayer ~= player) and otherPlayer.Character and otherPlayer.Character:FindFirstChild("HumanoidRootPart")) then
+					if not isOnSameTeam(otherPlayer) then
+						local FlatIdent_98388 = 0;
+						local distance;
+						while true do
+							if (FlatIdent_98388 == 0) then
+								distance = (player.Character.HumanoidRootPart.Position - otherPlayer.Character.HumanoidRootPart.Position).magnitude;
+								if (distance < shortestDistance) then
+									shortestDistance = distance;
+									closestPlayer = otherPlayer;
+								end
+								break;
+							end
+						end
+					end
+				end
+			end
+			return closestPlayer;
+		end
+		local function startTeleporting()
+			local FlatIdent_44839 = 0;
+			while true do
+				if (FlatIdent_44839 == 0) then
+					teleporting = true;
+					RunService.Heartbeat:Connect(function()
+						if not teleporting then
+							return;
+						end
+						local closestPlayer = getClosestPlayer();
+						if (closestPlayer and closestPlayer.Character and closestPlayer.Character:FindFirstChild("HumanoidRootPart")) then
+							local FlatIdent_25011 = 0;
+							local closestPosition;
+							local direction;
+							local behindPosition;
+							while true do
+								if (FlatIdent_25011 == 0) then
+									closestPosition = closestPlayer.Character.HumanoidRootPart.Position;
+									direction = (player.Character.HumanoidRootPart.Position - closestPosition).unit;
+									FlatIdent_25011 = 1;
+								end
+								if (FlatIdent_25011 == 1) then
+									behindPosition = closestPosition - (direction * 2);
+									if (player.Character and player.Character:FindFirstChild("HumanoidRootPart")) then
+										player.Character.HumanoidRootPart.CFrame = CFrame.new(behindPosition + Vector3.new(0, tpfollowrange, 0));
+									end
+									break;
+								end
+							end
+						end
+					end);
+					break;
+				end
+			end
+		end
+		local function stopTeleporting()
+			teleporting = false;
+		end
+		UserInputService.InputBegan:Connect(function(input, gameProcessed)
+			local FlatIdent_45D37 = 0;
+			while true do
+				if (FlatIdent_45D37 == 0) then
+					if gameProcessed then
+						return;
+					end
+					if (input.KeyCode == Enum.KeyCode.Z) then
+						if teleporting then
+							stopTeleporting();
+						else
+							startTeleporting();
+						end
+					end
+					break;
+				end
+			end
+		end);
+		game:GetService("StarterGui"):SetCore("SendNotification", {Title="Flame",Text="TpFollow Loaded! // Z to toggle",Duration=2});
+	end
+end});
+local Button = Tab:CreateButton({Name="Fly (F Key)",Callback=function()
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/EzWinsV4/FlameForRobloxRivals/refs/heads/main/Features/Flight.lua", true))();
+end});
+local Tab = Window:CreateTab("⚔️️ 한국머더", nil);
+local Section = Tab:CreateSection("by MMS 1G 1C IH");
+local Button = Tab:CreateButton({Name="종합 스크립트",Callback=function()
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/ZISULAs/Korean-Murder/refs/heads/main/By-zisula", true))();
+end});
+local Tab = Window:CreateTab("🔫 Murderers VS Sheriffs Duels", nil);
+local Section = Tab:CreateSection("by MMS 1G 1C IH");
+local Slider = Tab:CreateSlider({Name="히트박스 조정",Range={0,150},Increment=1,Suffix="Value",CurrentValue=50,Flag="Slider1",Callback=function(Value)
+	local FlatIdent_6A091 = 0;
+	while true do
+		if (1 == FlatIdent_6A091) then
+			game:GetService("RunService").RenderStepped:connect(function()
+				if _G.Disabled then
+					for i, v in next, game:GetService("Players"):GetPlayers() do
+						if (v.Name ~= game:GetService("Players").LocalPlayer.Name) then
+							pcall(function()
+								local FlatIdent_6D9D2 = 0;
+								while true do
+									if (FlatIdent_6D9D2 == 1) then
+										v.Character.HumanoidRootPart.BrickColor = BrickColor.new("Really blue");
+										v.Character.HumanoidRootPart.Material = "Neon";
+										FlatIdent_6D9D2 = 2;
+									end
+									if (FlatIdent_6D9D2 == 2) then
+										v.Character.HumanoidRootPart.CanCollide = false;
+										break;
+									end
+									if (FlatIdent_6D9D2 == 0) then
+										v.Character.HumanoidRootPart.Size = Vector3.new(_G.HeadSize, _G.HeadSize, _G.HeadSize);
+										v.Character.HumanoidRootPart.Transparency = 0.7;
+										FlatIdent_6D9D2 = 1;
+									end
+								end
+							end);
+						end
+					end
+				end
+			end);
+			break;
+		end
+		if (FlatIdent_6A091 == 0) then
+			_G.HeadSize = Value;
+			_G.Disabled = true;
+			FlatIdent_6A091 = 1;
+		end
+	end
+end});
+local Tab = Window:CreateTab("💬 트롤 버튼 타워", nil);
+local Section = Tab:CreateSection("by MMS 1G 1C IH");
+local Button = Tab:CreateButton({Name="모든 트롤 버튼 누르기",Callback=function()
+	local FlatIdent_1076E = 0;
+	local trollbuttons;
+	local lastcframe;
+	while true do
+		if (1 == FlatIdent_1076E) then
+			wait(0.15);
+			if game.Workspace:FindFirstChild("Gudock1") then
+				local FlatIdent_25A9F = 0;
+				while true do
+					if (FlatIdent_25A9F == 0) then
+						print("트롤 버튼 1(으)로 텔레포트 되었어요!");
+						game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace:FindFirstChild("Gudock1").CFrame + Vector3.new(0, 3, 0);
+						FlatIdent_25A9F = 1;
+					end
+					if (FlatIdent_25A9F == 1) then
+						trollbuttons += 1
+						print("트롤버튼(1) 작동시키는 중..");
+						break;
+					end
+				end
+			end
+			wait(0.15);
+			if game.Workspace:FindFirstChild("Gudock2") then
+				print("트롤 버튼 1(으)로 텔레포트 되었어요!");
+				game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace:FindFirstChild("Gudock2").CFrame + Vector3.new(0, 3, 0);
+				trollbuttons += 1
+				print("트롤버튼(2) 작동시키는 중..");
+			end
+			FlatIdent_1076E = 2;
+		end
+		if (2 == FlatIdent_1076E) then
+			wait(0.15);
+			if game.Workspace:FindFirstChild("Gudock3") then
+				local FlatIdent_99389 = 0;
+				while true do
+					if (FlatIdent_99389 == 1) then
+						trollbuttons += 1
+						print("트롤버튼(3) 작동시키는 중..");
+						break;
+					end
+					if (FlatIdent_99389 == 0) then
+						print("트롤 버튼 1(으)로 텔레포트 되었어요!");
+						game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace:FindFirstChild("Gudock3").CFrame + Vector3.new(0, 3, 0);
+						FlatIdent_99389 = 1;
+					end
+				end
+			end
+			wait(0.15);
+			if game.Workspace:FindFirstChild("Gudock4") then
+				local FlatIdent_578E3 = 0;
+				while true do
+					if (FlatIdent_578E3 == 0) then
+						print("트롤 버튼 1(으)로 텔레포트 되었어요!");
+						game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace:FindFirstChild("Gudock4").CFrame + Vector3.new(0, 3, 0);
+						FlatIdent_578E3 = 1;
+					end
+					if (FlatIdent_578E3 == 1) then
+						trollbuttons += 1
+						print("트롤버튼(4) 작동시키는 중..");
+						break;
+					end
+				end
+			end
+			FlatIdent_1076E = 3;
+		end
+		if (FlatIdent_1076E == 3) then
+			wait(0.15);
+			if game.Workspace:FindFirstChild("Gudock5") then
+				local FlatIdent_7A75F = 0;
+				while true do
+					if (FlatIdent_7A75F == 1) then
+						trollbuttons += 1
+						print("트롤버튼(5) 작동시키는 중..");
+						break;
+					end
+					if (FlatIdent_7A75F == 0) then
+						print("트롤 버튼 1(으)로 텔레포트 되었어요!");
+						game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace:FindFirstChild("Gudock5").CFrame + Vector3.new(0, 3, 0);
+						FlatIdent_7A75F = 1;
+					end
+				end
+			end
+			wait(0.15);
+			if game.Workspace:FindFirstChild("Gudock6") then
+				local FlatIdent_E0D0 = 0;
+				while true do
+					if (FlatIdent_E0D0 == 0) then
+						print("트롤 버튼 1(으)로 텔레포트 되었어요!");
+						game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace:FindFirstChild("Gudock6").CFrame + Vector3.new(0, 3, 0);
+						FlatIdent_E0D0 = 1;
+					end
+					if (FlatIdent_E0D0 == 1) then
+						trollbuttons += 1
+						print("트롤버튼(6) 작동시키는 중..");
+						break;
+					end
+				end
+			end
+			FlatIdent_1076E = 4;
+		end
+		if (FlatIdent_1076E == 5) then
+			wait(0.15);
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = lastcframe;
+			if (trollbuttons == 0) then
+				print("트롤버튼이 감지되지 않았어요!");
+			else
+				print("감지된 트롤버튼(" .. trollbuttons .. "개)을 모두 작동시켰어요!");
+			end
+			break;
+		end
+		if (FlatIdent_1076E == 0) then
+			trollbuttons = 0;
+			lastcframe = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame;
+			print("트롤 버튼이 있는지 확인하는 중..");
+			if game.Workspace:FindFirstChild("Gudock") then
+				local FlatIdent_6053C = 0;
+				while true do
+					if (FlatIdent_6053C == 0) then
+						print("트롤 버튼 1(으)로 텔레포트 되었어요!");
+						game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace:FindFirstChild("Gudock").CFrame + Vector3.new(0, 3, 0);
+						FlatIdent_6053C = 1;
+					end
+					if (FlatIdent_6053C == 1) then
+						trollbuttons += 1
+						print("트롤버튼(0) 작동시키는 중..");
+						break;
+					end
+				end
+			end
+			FlatIdent_1076E = 1;
+		end
+		if (FlatIdent_1076E == 4) then
+			wait(0.15);
+			if game.Workspace:FindFirstChild("Gudock7") then
+				local FlatIdent_3EEE1 = 0;
+				while true do
+					if (FlatIdent_3EEE1 == 0) then
+						print("트롤 버튼 1(으)로 텔레포트 되었어요!");
+						game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace:FindFirstChild("Gudock7").CFrame + Vector3.new(0, 3, 0);
+						FlatIdent_3EEE1 = 1;
+					end
+					if (FlatIdent_3EEE1 == 1) then
+						trollbuttons += 1
+						print("트롤버튼(7) 작동시키는 중..");
+						break;
+					end
+				end
+			end
+			wait(0.15);
+			if game.Workspace:FindFirstChild("Gudock8") then
+				local FlatIdent_324DE = 0;
+				while true do
+					if (FlatIdent_324DE == 1) then
+						trollbuttons += 1
+						print("트롤버튼(8) 작동시키는 중..");
+						break;
+					end
+					if (0 == FlatIdent_324DE) then
+						print("트롤 버튼 1(으)로 텔레포트 되었어요!");
+						game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace:FindFirstChild("Gudock8").CFrame + Vector3.new(0, 3, 0);
+						FlatIdent_324DE = 1;
+					end
+				end
+			end
+			FlatIdent_1076E = 5;
+		end
+	end
+end});
+local Button = Tab:CreateButton({Name="모든 사라지는 파트 밟기(크롱 스튜디오에서 제작된 게임 대부분 사용 가능)",Callback=function()
+	local FlatIdent_6AEED = 0;
+	local deleteparts;
+	local lastcframe;
+	while true do
+		if (FlatIdent_6AEED == 1) then
+			print("사라지는 파트가 있는지 확인하는 중..");
+			for _, parts in pairs(game.Workspace:GetChildren()) do
+				if (parts.Name == "사라지는 파트") then
+					local FlatIdent_7909D = 0;
+					while true do
+						if (FlatIdent_7909D == 1) then
+							game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = parts.CFrame + Vector3.new(0, 3, 0);
+							wait(0.15);
+							break;
+						end
+						if (FlatIdent_7909D == 0) then
+							deleteparts += 1
+							print(deleteparts .. "번째 사라지는 파트로 텔레포트 중..");
+							FlatIdent_7909D = 1;
+						end
+					end
+				end
+			end
+			FlatIdent_6AEED = 2;
+		end
+		if (FlatIdent_6AEED == 2) then
+			wait(0.15);
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = lastcframe;
+			FlatIdent_6AEED = 3;
+		end
+		if (FlatIdent_6AEED == 0) then
+			deleteparts = 0;
+			lastcframe = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame;
+			FlatIdent_6AEED = 1;
+		end
+		if (FlatIdent_6AEED == 3) then
+			if (deleteparts == 0) then
+				print("사라지는 파트가 감지되지 않았어요!");
+			else
+				print("사라지는 파트(" .. deleteparts .. "개)을 모두 작동시켰어요!");
+			end
+			break;
+		end
+	end
+end});
